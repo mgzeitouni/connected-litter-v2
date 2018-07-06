@@ -10,6 +10,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ChipCommunicationProvider } from '../providers/chip-communication/chip-communication';
+import { HttpClientModule } from '@angular/common/http';
+import { Network } from '@ionic-native/network';
+import { MqttProvider } from '../providers/mqtt/mqtt';
+
+import { HTTP } from '@ionic-native/http';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +28,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule, 
+
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -34,7 +43,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Network,
+    HTTP,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ChipCommunicationProvider,
+    MqttProvider
   ]
 })
 export class AppModule {}
